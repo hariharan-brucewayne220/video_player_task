@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "205958660225",
+    "firebase_url": "https://methodical-bank-264906.firebaseio.com",
+    "project_id": "methodical-bank-264906",
+    "storage_bucket": "methodical-bank-264906.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:205958660225:android:1c5a6740f2ba83d714cd80",
+        "android_client_info": {
+          "package_name": "com.hariharan.videoplayer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "205958660225-edf1ul4splme9j7e7c0cufs5eko6m4j8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDey1x4g58-IH-NGsnRGvmWVfUz63VnSmk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "205958660225-edf1ul4splme9j7e7c0cufs5eko6m4j8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
