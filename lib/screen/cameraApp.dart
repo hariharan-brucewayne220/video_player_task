@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:videoplayer/components/rounded_button.dart';
@@ -9,49 +11,47 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import 'package:image_picker/image_picker.dart';
 List<CameraDescription> cameras;
 
-
-class CameraApp extends StatefulWidget {
+class CameraWidget extends StatefulWidget {
   static const String id='camera_app';
   @override
-  CameraAppState createState() => CameraAppState();
+  CameraState createState() => CameraState();
 }
 
-class CameraAppState extends State<CameraApp> {
+class CameraState extends State<CameraWidget> {
+  List<CameraDescription> cameras;
   CameraController controller;
-  @override
-  void  initState()  {
-    super.initState();
-    get();
-    controller = CameraController(cameras[1], ResolutionPreset.medium);
-    controller.initialize().then((_) {
-      if (!mounted) {
-        return;
-      }
+  bool isReady = false;
 
-      setState(() {});
+  @override
+  void initState() {
+    super.initState();
+    setupCameras();
+  }
+
+  Future<void> setupCameras() async {
+    try {
+      cameras = await availableCameras();
+      controller = new CameraController(cameras[0], ResolutionPreset.medium);
+      await controller.initialize();
+    } on CameraException catch (_) {
+      setState(() {
+        isReady = false;
+      });
+    }
+    setState(() {
+      isReady = true;
     });
   }
 
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-  Future<void> get() async {
-    cameras = await availableCameras();
-
-  }
-  @override
   Widget build(BuildContext context) {
-    if (!controller.value.isInitialized) {
+    if (!isReady && !controller.value.isInitialized) {
       return Container();
     }
-    return RotationTransition(
-      turns: AlwaysStoppedAnimation(270 / 360),
-      child: CameraPreview(controller),
-    );
+    return AspectRatio(
+        aspectRatio: controller.value.aspectRatio,
+        child: CameraPreview(controller));
   }
 }
-

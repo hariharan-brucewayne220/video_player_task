@@ -97,7 +97,7 @@ class _ChewieDemoState extends State<ChewieDemo> {
   void dispose() {
     _videoPlayerController1.dispose();
     _videoPlayerController2.dispose();
-    _chewieController.dispose();
+    _chewieController?.dispose();
     super.dispose();
   }
 
@@ -111,9 +111,15 @@ class _ChewieDemoState extends State<ChewieDemo> {
       home: Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
+          backgroundColor: Colors.black45,
         ),
         body: Column(
           children: <Widget>[
+            Expanded(
+              child: Center(
+                child: CameraWidget(),
+              ),
+            ),
             Expanded(
               child: Center(
                 child: Chewie(
@@ -133,7 +139,7 @@ class _ChewieDemoState extends State<ChewieDemo> {
                   child: FlatButton(
                     onPressed: () {
                       setState(() {
-                        _chewieController.dispose();
+
                         _videoPlayerController2.pause();
                         _videoPlayerController2.seekTo(Duration(seconds: 0));
                         _chewieController = ChewieController(
@@ -154,10 +160,10 @@ class _ChewieDemoState extends State<ChewieDemo> {
                   child: FlatButton(
                     onPressed: () {
                       setState(() {
-                        _chewieController.dispose();
+
                         _videoPlayerController1.pause();
                         _videoPlayerController1.seekTo(Duration(seconds: 0));
-                        Navigator.pushNamed(context, CameraApp.id);
+                        Navigator.pushNamed(context, CameraWidget.id);
                       }
 
 

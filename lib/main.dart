@@ -34,7 +34,7 @@ class VideoPlayer extends StatelessWidget {
         LoginScreen.id:(context)=>LoginScreen(),
         RegistrationScreen.id:(context)=>RegistrationScreen(),
         ChewieDemo.id:(context)=>ChewieDemo(),
-        CameraApp.id:(context)=>CameraApp(),
+        CameraWidget.id:(context)=>CameraWidget(),
 
       },
     );
