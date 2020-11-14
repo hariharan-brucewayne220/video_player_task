@@ -34,7 +34,7 @@ class CameraState extends State<CameraWidget> {
   Future<void> setupCameras() async {
     try {
       cameras = await availableCameras();
-      controller = new CameraController(cameras[0], ResolutionPreset.medium);
+      controller = new CameraController(cameras[1], ResolutionPreset.medium);
       await controller.initialize();
     } on CameraException catch (_) {
       setState(() {
